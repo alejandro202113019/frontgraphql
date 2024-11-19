@@ -17,7 +17,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('https://taller1-2do50-electiva2.onrender.com', {
+      const response = await fetch('http://localhost:10000/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
