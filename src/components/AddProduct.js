@@ -42,9 +42,11 @@ const handleSubmit = (e) => {
     console.error('Please select a category');
     return;
   }
+  
 
   // Asegúrate de que el ID de la categoría sea un String
   const categoryId = formData.category ? String(formData.category) : '';
+  console.log('Enviando categoría:', categoryId);
 
   addProduct({
     variables: {
