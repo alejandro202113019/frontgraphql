@@ -20,6 +20,7 @@ const AddProduct = () => {
   const [addProduct] = useMutation(ADD_PRODUCT, {
     refetchQueries: [{ query: GET_PRODUCTS }],
     onCompleted: () => {
+      console.log(formData.category);
       navigate('/products');
     },
     onError: (error) => {
