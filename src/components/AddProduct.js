@@ -23,8 +23,8 @@ const AddProduct = () => {
       navigate('/products');
     },
     onError: (error) => {
-      console.error('Error adding product:', error);
-    }
+  console.error('Error completo:', JSON.stringify(error, null, 2));
+  }
   });
 
   const handleChange = (e) => {
@@ -40,6 +40,7 @@ const handleSubmit = (e) => {
 
   if (!formData.category) {
     console.error('Por favor selecciona una categoría');
+    console.log(formData.category);
     return;
   }
 
