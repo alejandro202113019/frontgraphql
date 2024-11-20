@@ -35,20 +35,25 @@ const AddProduct = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.category) {
-      console.error('Please select a category');
-      return;
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (!formData.category) {
+    console.error('Please select a category');
+    return;
+  }
+
+  // Asegúrate de que el ID de la categoría sea un String
+  const categoryId = formData.category ? String(formData.category) : '';
+
+  addProduct({
+    variables: {
+      name: formData.name,
+      description: formData.description,
+      value: parseFloat(formData.value),
+      category: categoryId,  // Convierte a String explícitamente
     }
-    addProduct({
-      variables: {
-        name: formData.name,
-        description: formData.description,
-        value: parseFloat(formData.value),
-        category: formData.category
-      }
-    });
+  });
   };
 
   if (categoriesLoading) return <div>Loading categories...</div>;
