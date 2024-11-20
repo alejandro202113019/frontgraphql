@@ -39,25 +39,28 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   if (!formData.category) {
-    console.error('Please select a category');
+    console.error('Por favor selecciona una categoría');
     return;
   }
-  
 
-  // Asegúrate de que el ID de la categoría sea un String
-  const categoryId = formData.category ? String(formData.category) : '';
-  console.log('Enviando categoría:', categoryId);
+  const categoryId = String(formData.category);
+
+  console.log('Enviando datos:', {
+    name: formData.name,
+    description: formData.description,
+    value: parseFloat(formData.value),
+    category: categoryId, // Confirma que sea un String
+  });
 
   addProduct({
     variables: {
       name: formData.name,
       description: formData.description,
       value: parseFloat(formData.value),
-      category: categoryId,  // Convierte a String explícitamente
-    }
+      category: categoryId,
+    },
   });
-  };
-
+};
   if (categoriesLoading) return <div>Loading categories...</div>;
   if (categoriesError) return <div>Error loading categories: {categoriesError.message}</div>;
 
