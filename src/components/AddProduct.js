@@ -15,7 +15,7 @@ const AddProduct = () => {
     category: ''
   });
 
-  const { data: categoriesData } = useQuery(GET_CATEGORIES);
+  const { data: categoriesData, loading: categoriesLoading, error: categoriesError } = useQuery(GET_CATEGORIES);
 
   const [addProduct] = useMutation(ADD_PRODUCT, {
     refetchQueries: [{ query: GET_PRODUCTS }],
@@ -37,6 +37,10 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.category) {
+      console.error('Please select a category');
+      return;
+    }
     addProduct({
       variables: {
         name: formData.name,
@@ -46,6 +50,9 @@ const AddProduct = () => {
       }
     });
   };
+
+  if (categoriesLoading) return <div>Loading categories...</div>;
+  if (categoriesError) return <div>Error loading categories: {categoriesError.message}</div>;
 
   return (
     <div>
